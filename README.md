@@ -1,10 +1,44 @@
 # go-utils
+
 私人订制 Go 语言工具函数库
 
 ## 安装
 
 ```bash
 dep ensure -v -add github.com/leizongmin/go-utils
+```
+
+## 使用
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+    "github.com/leizongmin/go-utils"
+)
+
+func main() {
+    t := utils.SetTimeout(func() {
+      fmt.Println("Hello, world")
+    }, time.Second*2)
+}
+```
+
+## 计时器相关接口
+
+```go
+h := func() {}
+d := time.Second * 2
+var t *utils.Timer
+
+// 延时执行
+t = utils.SetTimeout(h, d)
+// 周期性执行
+t = utils.SetInterval(h, d)
+// 取消执行
+t.Cancel()
 ```
 
 ## License
@@ -31,4 +65,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-````
+```
